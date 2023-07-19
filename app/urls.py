@@ -1,7 +1,8 @@
 from django.urls import path
 
-from app.views import IndexView
+from app.views import IndexView, addproduct
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='index')
+    path('', IndexView, name='index'),
+    path('addproduct/', addproduct, name='add-product')
 ]
