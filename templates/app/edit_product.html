@@ -1,8 +1,12 @@
-{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
 
-<!-- Mirrored from qoduby.tempload.com/html/demo2/dist/projects-ecommerce-products.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Jul 2023 06:59:12 GMT -->
+<!-- Mirrored from qoduby.tempload.com/html/demo2/dist/projects-ecommerce-add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Jul 2023 06:56:34 GMT -->
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +14,7 @@
 	<meta name="description" content="Qoduby - Admin & Dashboard template by tempload." />
 	<meta name="keywords" content="qoduby, tempload, bootstrap, bootstrap 5, admin, template, dashboard, theme, admin themes, admin, templates" />
 	<meta name="author" content="tempload" />	
-	<title>Qoduby - Admin & Dashboard Template</title>
+	<title>Add Product</title>
 
 	<!-- Favicon -->
 	<link rel="icon" type="image/png" href="{% static 'assets/media/logo/favicon.png' %}" />
@@ -22,7 +26,7 @@
 
 	<!-- Global CSS -->
 	<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css"/>
-	
+
 	<!-- Light-Dark Mode & Theme Direction Selector -->
 	<script src="{% static 'assets/js/theme.js' %}" crossorigin="anonymous"></script>
 </head>
@@ -37,7 +41,7 @@
 				<div class="menu-title mb-2">
 					<small>PROJECTS</small>
 				</div>
-				<ul class="menu-group m-0 px-4 mb-4">	
+				<ul class="menu-group m-0 px-4 mb-4">
 
 					<li class="sub-menu active">
 						<a href="javascript:;" class="d-flex align-items-center justify-content-between">
@@ -48,8 +52,8 @@
 							<i class="arrow" data-feather="chevron-right" height="14"></i>
 						</a>
 						<ul class="sub-menu-group">
-							<li class="active"><a href="{% url 'index' %}"><span>Products</span></a></li>
-							<li><a href="{% url 'add-product' %}"><span>Add Product</span></a></li>
+							<li><a href="{% url 'index' %}"><span>Products</span></a></li>
+							<li class="active"><a href="{% url 'add-product' %}"><span>Add Product</span></a></li>
 							<li><a href="projects-ecommerce-order-list.html"><span>Order List</span></a></li>
 						</ul>
 					</li>
@@ -71,7 +75,7 @@
 		<!-- ***** Responsive Menu Backdrop Start ***** -->
 		<div class="menu-backdrop"></div>
 		<!-- ***** Responsive Menu Backdrop End ***** -->
-		
+
 		<!-- ***** Main Start ***** -->
 		<main class="app-main">
 			<!-- ***** Header Start ***** -->
@@ -176,8 +180,6 @@
 					</div>
 					<!-- ***** Notification Dropdown End ***** -->
 
-
-
 					<!-- ***** Header Menu Open Button Start ***** -->
 					<a class="header-menu-trigger ms3"><span>Menu</span></a>
 					<!-- ***** Header Menu Open Button End ***** -->
@@ -190,156 +192,123 @@
 				<div class="container-fluid p0">
 					<!-- Page Top Start -->
 					<div class="row mb6 align-items-center">
-						<div class="col-md-6 mobile-bottom-fix">
-							<h1 class="page-title mb2">Products</h1>
+						<div class="col-md-12 mobile-bottom-fix">
+							<h1 class="page-title mb2">Add Product</h1>
 							<nav class="breadcrumb-nav" aria-label="breadcrumb">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item active" aria-current="page">Products</li>
+									<li class="breadcrumb-item"><a href="{% url 'index' %}">Products</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Add Product</li>
 								</ol>
 							</nav>
-						</div>
-						<div class="col-md-6 text-start text-md-end">
-
-
-							<!-- Add Button Start-->
-							<a href="{% url 'add-product' %}" class="btn btn-primary">Add Product</a>
-							<!-- Add Button End-->
 						</div>
 					</div>
 					<!-- Page Top End -->
 
 					<!-- Content Start -->
-					<div class="row mb5">
-						<div class="col-12">
-							<div class="card shadow-card">
-								<div class="border-bottom">
-									<div class="p6">
-										<div class="row align-items-center">
-											<form method="get" action="/" class="col-md-3" >
-												<input name="query" value="{{ product }}" class="form-control" type="text" placeholder="Search...">
-											</form>
-											<div class="col-md-9 text-end">
-												<div id="edit-buttons" class="visibility-hide">
-													<span id="selected-items">1</span>
-													<span class="me2">Selected</span>
-{#													<a href="{% url 'delete-product' product.id %}"><button type="button" class="btn btn-outline-danger me2">Delete</button></a>#}
-													<button type="button" class="btn btn-outline-secondary me2">Archive</button>
-													<button type="button" class="btn btn-outline-secondary me2">Publish</button>
-													<button type="button" class="btn btn-outline-secondary">Unpublish</button>
+					<form  action="{% url 'add-product' %}" method="post" enctype="multipart/form-data" id="addcategory" class="needs-validation" novalidate>
+                        {% csrf_token %}
+						<div class="row mb5">
+							<!-- Left Column Start -->
+							<div class="col-xxl-8">
+								<div class="row">
+									<!-- General Start -->
+									<div class="col-12 mb6">
+										<div class="card shadow-card p6">
+											<div class="row">
+												<div class="col-12">
+													<h6 class="mb4">General</h6>
 												</div>
+												<div class="col-12 mb5">
+													<label for="add-form-1" class="form-label">
+														<span>Product Name</span>
+														<span class="text-danger">*</span>
+														<i data-feather="info" stroke-width="2" width="12" class="text-body" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="qd-tooltip" data-bs-title="Type a name for the product."></i>
+													</label>
+													<input id="add-form-1" class="form-control slug-target" type="text" name="title" required>
+													<div class="invalid-feedback">Please fill out all fields.</div>
+												</div>
+
+
+
+												<div class="col-12 mb5">
+													<label for="add-form-5" class="form-label">
+														<span>Price</span>
+														<span class="text-danger">*</span>
+														<i data-feather="info" stroke-width="2" width="12" class="text-body" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="qd-tooltip" data-bs-title="Write the price of the product excluding taxes."></i>
+													</label>
+													<div class="input-group">
+														<input type="text" id="add-form-5" name="price"                                                                      class="form-control" placeholder="0,00" required>
+														<span class="input-group-text">USD</span>
+													</div>
+													<div class="invalid-feedback">Please fill out all fields.</div>
+												</div>
+
+                                                 <div class="col-12">
+                                                	<label for="add-form-7" class="form-label" >
+														<span >Description</span>
+														<small class="text-body">(Optional)</small>
+														<i  data-feather="info" stroke-width="2" width="12" class="text-body" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="qd-tooltip" data-bs-title="Description is optional."></i>
+													</label>
+                                                <textarea  name="description"  class="col-12 mb5 "   ></textarea>
+
+											</div>
 											</div>
 										</div>
 									</div>
+									<!-- General End -->
+
+
 								</div>
-								<div class="p6 pt3">
-									<div class="table-responsive text-nowrap">
-										<table class="table qd-table mb6 align-middle">
-											<thead>
-												<tr>
-													<th scope="col">
-														<div class="checkbox checkbox-primary">
-															<input type="checkbox" name="check1" id="check1">
-															<label for="check1"></label>
+							</div>
+							<!-- Left Column End -->
+							
+							<!-- Right Column Start -->
+							<div class="col-xxl-4">
+								<div class="sticky-top">
+									<div class="row">
+										<!-- Media Start -->
+										<div class="col-12 mb6">
+											<div class="card shadow-card p6">
+												<label for="add-form-1" class="form-label">
+													<span>Media</span>
+													<span class="text-danger">*</span>
+													<i data-feather="info" stroke-width="2" width="12" class="text-body" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="qd-tooltip" data-bs-title="Supports: *.png or *.jpg"></i>
+												</label>
+												<div id="drop-area" class="d-flex flex-column align-items-center bg-light">
+													<div class="width-120 height-120 border-dashed rounded bg-body-secondary position-relative overflow-hidden d-flex align-items-center justify-content-center mb4">
+														<i data-feather="image" stroke-width="1.5" class="text-body"></i>
+														<div class="img-fix width-120 height-120 position-absolute top-0 start-0" >
+															<img id="preview-img" class="" >
 														</div>
-													</th>
-													<th scope="col">PRODUCT</th>
-													<th scope="col">TITLE</th>
-													<th scope="col">PRICE</th>
-													<th scope="col" class="text-end">ACTIONS</th>
-												</tr>
-											</thead>
-											<tbody>
-                                            {% for product in products %}
-                                            <form action="{% url 'add-product' %}" method="post" enctype="multipart/form-data">
-                                                {% csrf_token %}
-
-												<tr>
-													<td>
-														<div class="checkbox checkbox-primary">
-															<input type="checkbox" name="check2" id="check2" class="select-item">
-															<label for="check2"></label>
+													</div>
+													<div class="d-flex flex-grow-1 align-items-center justify-content-center">
+														<div class="d-flex flex-column justify-content-start align-items-center">
+															<strong class="d-block mb2">Drag & Drop</strong>
+															<span class="d-block mb2">OR</span>
+															<label for="fileElem" id="fileSelect" class="d-block mb3 text-primary">Browse Photo</label>
+															<small>Supports: *.png, *.jpg and *.jpeg</small>
 														</div>
-													</td>
-													<td>
-														<div class="d-inline-flex flex-row align-items-center">
-															<div class="width-60 height-60 img-fix rounded me4" >
-																<img src="{{ product.image.url }}" alt=""  >
-{#															</div>#}
-															<strong class="text-heading">{{ form.title }}</strong>
-														</div>
-													</td>
-													<td>
-														<strong>{{ product.title }}</strong>
-													</td>
-{#													<td>#}
-{#														<label class="qd-switch switch-primary switch-sm">#}
-{#															<input type="checkbox" checked>#}
-{#															<span class="slider"></span>#}
-{#														</label>#}
-{#													</td>#}
-
-													<td>
-														<strong class="text-heading">${{ product.price }}</strong>
-													</td>
-{#													<td>#}
-{#														<strong class="text-heading">3</strong>#}
-{#													</td>#}
-													<td>
-														<div class="dropdown text-end">
-															<button type="button" class="outline-none dropdown-toggle arrow-none border-0 height-40 rounded ps3 bg-body-secondary opacity-75" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
-																<span class="text-heading">Actions</span>
-																<i data-feather="chevron-down" stroke-width="2" height="16" class="text-heading"></i>
-															</button>
-															<ul class="dropdown-menu text-start">
-																<li><a class="dropdown-item" href="#">Edit</a></li>
-																<li><a class="dropdown-item" href="#">Details</a></li>
-																<li>
-																	<a class="dropdown-item d-flex align-items-center justify-content-between" href="{% url 'delete-product' product.id %}"><button type="button">
-																		Delete <i data-feather="info" stroke-width="2" height="12" class="text-body me1" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-custom-class="qd-tooltip" data-bs-title="If you delete it, this action cannot be undone."></i>
-																	</a>
-																</li>
-															</ul>
-														</div>
-													</td>
-												</tr>
-
-                                            </form>
-                                             {% endfor %}
-											</tbody>
-										</table>
-									</div>
-									<div class="row align-items-center">
-										<div class="col-lg-6 mobile-bottom-fix text-center text-lg-start">
-											<span class="me1">Showing:</span>
-											<span class="text-heading">10 of 40</span>
+													</div>
+													<input type="file" id="fileElem" accept="image/*" class="d-none" name="image">
+												</div>
+											</div>
 										</div>
-										<div class="col-lg-6">
-											<nav aria-label="Page navigation example">
-												<ul class="pagination justify-content-center justify-content-lg-end align-items-center">
-													<li class="page-item">
-														<a class="page-link">
-															<i class="arrow" data-feather="chevron-left" width="14"></i>
-														</a>
-													</li>
-													<li class="page-item"><a class="page-link" href="#">1</a></li>
-													<li class="page-item active"><a class="page-link" href="#">2</a></li>
-													<li class="page-item"><a class="page-link" href="#">3</a></li>
-													<li class="page-item"><a class="page-link" href="#">4</a></li>
-													<li class="page-item"><a class="page-link" href="#">5</a></li>
-													<li class="page-item"><a class="page-link" href="#">6</a></li>
-													<li class="page-item">
-														<a class="page-link" href="#">
-															<i class="arrow" data-feather="chevron-right" width="14"></i>
-														</a>
-													</li>
-												</ul>
-											</nav>
-										</div>
+										<!-- Media End -->
+
+
 									</div>
 								</div>
 							</div>
+							<!-- Right Column End -->
+
+							<!-- Buttons Start -->
+							<div class="col-12 text-end">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
+								<button type="submit" class="btn btn-primary">Save changes</button>
+							</div>
+							<!-- Buttons End -->
 						</div>
-					</div>
+                    </form>
 					<!-- Content End -->
 				</div>
 			</div>
@@ -351,15 +320,9 @@
 					<div class="row">
 						<div class="col-sm-6 text-center text-lg-start mb-sm-1">
 							<span>2023©</span>
-							<span class="text-heading">Qoduby</span>
+							<span class="text-heading">IT CITY ACADEMY</span>
 						</div>
-						<div class="col-sm-6">
-							<ul class="list-inline m0 text-center text-lg-end">
-								<li class="list-inline-item"><a href="#" class="text-body text-decoration-none hover-primary">Support</a></li>
-								<li class="list-inline-item"><a href="#" class="text-body text-decoration-none hover-primary">License</a></li>
-								<li class="list-inline-item"><a href="#" class="text-body text-decoration-none hover-primary">Documentation</a></li>
-							</ul>
-						</div>
+
 					</div>
 				</div>
 			</footer>
@@ -373,8 +336,13 @@
 	<!-- Common Javascript -->
 	<script src="{% static 'assets/js/app.js' %}" crossorigin="anonymous"></script>
 	<!-- Page Specific Javascript -->
-	<script src="{% static 'assets/js/pages/projects/ecommerce/products.js' %}" crossorigin="anonymous"></script>
+	<script src="{% static 'assets/js/pages/projects/ecommerce/add-product.js' %}" crossorigin="anonymous"></script>
 </body>
 
-<!-- Mirrored from qoduby.tempload.com/html/demo2/dist/projects-ecommerce-products.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Jul 2023 07:00:24 GMT -->
+<!-- Mirrored from qoduby.tempload.com/html/demo2/dist/projects-ecommerce-add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Jul 2023 06:57:17 GMT -->
+</html></title>
+</head>
+<body>
+
+</body>
 </html>

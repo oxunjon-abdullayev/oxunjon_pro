@@ -26,4 +26,9 @@ def addproduct(request):
                   context={"form":form})
 
 
+def deleteproduct(request, product_id):
+    product = ProductModel.objects.filter(id=product_id).first()
+    if product:
+        product.delete()
+        return redirect('index')
 
