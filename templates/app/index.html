@@ -199,56 +199,7 @@
 							</nav>
 						</div>
 						<div class="col-md-6 text-start text-md-end">
-							<!-- Filter Dropdown Start-->
-							<div class="dropdown d-inline me4">
-								<button class="btn bg-white d-inline-flex align-items-center dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
-									<i data-feather="filter" stroke-width="1.5" height="16" class="me2 text-body"></i>
-									<span class="text-body">Filter</span>
-								</button>
-								<div class="dropdown-menu width-330 p0">
-									<div class="border-bottom-dashed">
-										<h6 class="mb0 p4 px-4">Filter Options</h6>
-									</div>
-									<div class="p5 px-4">
-										<div class="row mb5">
-											<div class="col-12">
-												<label for="form-element-2" class="form-label">Category:</label>
-												<select id="form-element-2" class="form-select js-choice">
-													<option value="">Select option</option>
-													<option value="1">Computer Components</option>
-													<option value="2">Smart Phone</option>
-													<option value="3">Toys & Video Games</option>
-													<option value="4">Furniture</option>
-													<option value="5">Jewelry & Accessories</option>
-													<option value="6">Baby & Toddler</option>
-													<option value="7">Kitchen & Dining</option>
-													<option value="8">Kid's Rooms</option>
-													<option value="9">Sports & Outdoors</option>
-													<option value="10">Office & School Supplies</option>
-												</select>
-											</div>
-										</div>
-										<div class="row mb5">
-											<div class="col-12">
-												<label class="qd-switch switch-primary switch-sm">
-													<input type="checkbox" checked>
-													<span class="slider"></span>
-												</label>
-												<span>Stock</span>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-6">
-												<button class="btn btn-sm d-block w-100 btn-secondary btn-soft" role="button">Reset</button>
-											</div>
-											<div class="col-6">
-												<button class="btn btn-sm d-block w-100 btn-primary" role="button">Apply</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Filter Dropdown End-->
+
 
 							<!-- Add Button Start-->
 							<a href="{% url 'add-product' %}" class="btn btn-primary">Add Product</a>
@@ -264,9 +215,9 @@
 								<div class="border-bottom">
 									<div class="p6">
 										<div class="row align-items-center">
-											<div class="col-md-3">
-												<input class="form-control" type="text" placeholder="Search...">
-											</div>
+											<form method="get" action="/" class="col-md-3" >
+												<input name="query" value="{{ product }}" class="form-control" type="text" placeholder="Search...">
+											</form>
 											<div class="col-md-9 text-end">
 												<div id="edit-buttons" class="visibility-hide">
 													<span id="selected-items">1</span>
@@ -293,14 +244,12 @@
 													</th>
 													<th scope="col">PRODUCT</th>
 													<th scope="col">TITLE</th>
-{#													<th scope="col">STOCKS</th>#}
 													<th scope="col">PRICE</th>
-{#													<th scope="col">VARIANTS</th>#}
 													<th scope="col" class="text-end">ACTIONS</th>
 												</tr>
 											</thead>
 											<tbody>
-
+                                            {% for product in products %}
                                             <form action="{% url 'add-product' %}" method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
 
@@ -313,14 +262,14 @@
 													</td>
 													<td>
 														<div class="d-inline-flex flex-row align-items-center">
-															<div class="width-60 height-60 img-fix rounded me4">
-																<img src="{% static 'assets/media/ecommerce/11.jpg' %}" alt="">
-															</div>
+															<div class="width-60 height-60 img-fix rounded me4" >
+																<img src="{{ product.image.url }}" alt=""  >
+{#															</div>#}
 															<strong class="text-heading">{{ form.title }}</strong>
 														</div>
 													</td>
 													<td>
-														<strong>Electronics</strong>
+														<strong>{{ product.title }}</strong>
 													</td>
 {#													<td>#}
 {#														<label class="qd-switch switch-primary switch-sm">#}
@@ -330,7 +279,7 @@
 {#													</td>#}
 
 													<td>
-														<strong class="text-heading">$126,45</strong>
+														<strong class="text-heading">${{ product.price }}</strong>
 													</td>
 {#													<td>#}
 {#														<strong class="text-heading">3</strong>#}
@@ -355,7 +304,7 @@
 												</tr>
 
                                             </form>
-
+                                             {% endfor %}
 											</tbody>
 										</table>
 									</div>

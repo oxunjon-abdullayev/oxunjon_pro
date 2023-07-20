@@ -201,7 +201,8 @@
 					<!-- Page Top End -->
 
 					<!-- Content Start -->
-					<form method="post" action="#" id="addcategory" class="needs-validation" novalidate>
+					<form  action="{% url 'add-product' %}" method="post" enctype="multipart/form-data" id="addcategory" class="needs-validation" novalidate>
+                        {% csrf_token %}
 						<div class="row mb5">
 							<!-- Left Column Start -->
 							<div class="col-xxl-8">
@@ -219,7 +220,7 @@
 														<span class="text-danger">*</span>
 														<i data-feather="info" stroke-width="2" width="12" class="text-body" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="qd-tooltip" data-bs-title="Type a name for the product."></i>
 													</label>
-													<input id="add-form-1" class="form-control slug-target" type="text" required>
+													<input id="add-form-1" class="form-control slug-target" type="text" name="title" required>
 													<div class="invalid-feedback">Please fill out all fields.</div>
 												</div>
 
@@ -232,22 +233,21 @@
 														<i data-feather="info" stroke-width="2" width="12" class="text-body" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="qd-tooltip" data-bs-title="Write the price of the product excluding taxes."></i>
 													</label>
 													<div class="input-group">
-														<input type="text" id="add-form-5" class="form-control" placeholder="0,00" required>
+														<input type="text" id="add-form-5" name="price"                                                                      class="form-control" placeholder="0,00" required>
 														<span class="input-group-text">USD</span>
 													</div>
 													<div class="invalid-feedback">Please fill out all fields.</div>
 												</div>
 
-												<div class="col-12">
-													<label for="add-form-7" class="form-label">
-														<span>Description</span>
+                                                 <div class="col-12">
+                                                	<label for="add-form-7" class="form-label" >
+														<span >Description</span>
 														<small class="text-body">(Optional)</small>
-														<i data-feather="info" stroke-width="2" width="12" class="text-body" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="qd-tooltip" data-bs-title="Description is optional."></i>
+														<i  data-feather="info" stroke-width="2" width="12" class="text-body" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="qd-tooltip" data-bs-title="Description is optional."></i>
 													</label>
-													<div class="height-300 pb7">
-														<div id="general-description-editor"></div>
-													</div>
-												</div>
+                                                <textarea  name="description"  class="col-12 mb5 "   ></textarea>
+
+											</div>
 											</div>
 										</div>
 									</div>
@@ -273,8 +273,8 @@
 												<div id="drop-area" class="d-flex flex-column align-items-center bg-light">
 													<div class="width-120 height-120 border-dashed rounded bg-body-secondary position-relative overflow-hidden d-flex align-items-center justify-content-center mb4">
 														<i data-feather="image" stroke-width="1.5" class="text-body"></i>
-														<div class="img-fix width-120 height-120 position-absolute top-0 start-0">
-															<img id="preview-img" class="">
+														<div class="img-fix width-120 height-120 position-absolute top-0 start-0" >
+															<img id="preview-img" class="" >
 														</div>
 													</div>
 													<div class="d-flex flex-grow-1 align-items-center justify-content-center">
@@ -285,7 +285,7 @@
 															<small>Supports: *.png, *.jpg and *.jpeg</small>
 														</div>
 													</div>
-													<input type="file" id="fileElem" accept="image/*" class="d-none">
+													<input type="file" id="fileElem" accept="image/*" class="d-none" name="image">
 												</div>
 											</div>
 										</div>
@@ -304,7 +304,7 @@
 							</div>
 							<!-- Buttons End -->
 						</div>
-					</form>
+                    </form>
 					<!-- Content End -->
 				</div>
 			</div>
